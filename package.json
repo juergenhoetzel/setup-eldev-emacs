@@ -1,0 +1,28 @@
+{
+  "name": "setup-eldev-emacs",
+  "version": "1.0.0",
+  "description": "Github Action to set up a Eldev",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juergenhoetzel/setup-eldev-emacs.git"
+  },
+  "keywords": [
+    "actions"
+  ],
+  "author": "Jürgen Hötzel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juergenhoetzel/setup-eldev-emacs/issues"
+  },
+  "homepage": "https://github.com/juergenhoetzel/setup-eldev-emacs#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.7",
+    "@actions/exec": "^1.0.4",
+    "@actions/http-client": "^1.0.11"
+  }
+}
