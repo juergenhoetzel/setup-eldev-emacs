@@ -1,9 +1,9 @@
-import * as core from '@actions/core';
-import * as exec from '@actions/exec';
-import * as httpm  from '@actions/http-client';
-import * as os from 'os';
-import * as fs from 'fs';
-import {join} from 'path';
+const core = require('@actions/core');
+const exec = require('@actions/exec');
+const httpm = require('@actions/http-client');
+const os = require('os');
+const fs = require('fs');
+const {join} = require('path');
 
 async function run() {
     const http = new httpm.HttpClient('setup-eldev-emacs');
