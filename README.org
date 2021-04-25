@@ -1,7 +1,7 @@
 #+author: Jürgen Hötzel
 
 * Description
-~setup-eldev-emacs~ prepare Eldev for your workflow.
+~setup-eldev-emacs~ prepares ~Eldev~ for your workflow.
 - Fetch ~Eldev~ from [[https://stable.melpa.org/][MELPA stable]]
 - Add ~Eldev~ bin folder to your workflow ~$PATH~
 
