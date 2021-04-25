@@ -30,7 +30,10 @@ async function run() {
 	console.log("foo");
     }
     const eldevBin = join(isWindows? process.env.USERPROFILE : process.env.HOME,  ".cask", "bin");
+    core.startGroup(`Adding ${eldevBin} to PATH`);
     core.addPath(eldevBin);
+    core.Endgroup();
+    console.log("End of index.js");
 }
 
 run();
