@@ -4,5 +4,5 @@ author: 'Jürgen Hötzel'
 
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'index.mjs'
 
