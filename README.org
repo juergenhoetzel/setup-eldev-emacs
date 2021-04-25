@@ -1,0 +1,50 @@
+#+author: Jürgen Hötzel
+
+* Description
+~setup-eldev-emacs~ prepare Eldev for your workflow.
+- Fetch ~Eldev~ from [[https://stable.melpa.org/][MELPA stable]]
+- Add ~Eldev~ bin folder to your workflow ~$PATH~
+
+* Usage
+~Eldev~ depends on ~Emacs~.
+You should setup ~Emacs~, respectively, before using ~setup-eldev-emacs~.
+
+This mechanism has a merit to be able to use specified version of ~Emacs~.
+
+** Basic usage
+#+begin_src yaml
+jobs:
+  test:
+    runs-on: ${{matrix.os}}
+    continue-on-error: ${{matrix.emacs_version == 'snapshot'}}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        emacs_version: ['26.1', '26.2', '26.3', '27.1', '27.2']
+
+    steps:
+    - name: Set up Emacs
+      if: "!startsWith (matrix.os, 'windows')"
+      uses: purcell/setup-emacs@master
+      with:
+        version: ${{matrix.emacs_version}}
+
+    - name: Set up Emacs on Windows
+      if: startsWith (matrix.os, 'windows')
+      run: |
+        Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+        Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+        scoop update
+        scoop bucket add extras
+        scoop install emacs@${{ matrix.emacs_version }}
+        echo "$env:PATH" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+
+    - name: Setup Eldev
+      uses: juergenhoetzel/setup-eldev-emacs@master
+
+    - name: Output Eldev version
+      run: |
+        eldev --version
+#+end_src
+
