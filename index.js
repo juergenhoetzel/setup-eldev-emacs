@@ -29,11 +29,10 @@ async function run() {
 	core.error(`error occured bootstraping from ${url}: ${err}`);
 	console.log("foo");
     }
-    const eldevBin = join(isWindows? process.env.USERPROFILE : process.env.HOME,  ".cask", "bin");
+    const eldevBin = join(isWindows? process.env.USERPROFILE : process.env.HOME,  ".eldev", "bin");
     core.startGroup(`Adding ${eldevBin} to PATH`);
     core.addPath(eldevBin);
     core.Endgroup();
-    console.log("End of index.js");
 }
 
 run();
