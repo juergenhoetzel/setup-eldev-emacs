@@ -24,10 +24,9 @@ async function run() {
 	    await fs.promises.chmod(localScript, fs.constants.S_IXUSR | fs.constants.S_IWUSR | fs.constants.S_IRUSR);
 	}
 	core.endGroup();
-	await exec.exec(localScript);
+	await exec.exec(localScript, ['https://raw.githubusercontent.com/doublep/eldev/master/bin/eldev.bat']);
     } catch (err) {
 	core.error(`error occured bootstraping from ${url}: ${err}`);
-	console.log("foo");
     }
     const eldevBin = join(isWindows? process.env.USERPROFILE : process.env.HOME,  ".eldev", "bin");
     core.startGroup(`Adding ${eldevBin} to PATH`);
