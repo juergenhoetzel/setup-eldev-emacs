@@ -20,13 +20,13 @@ async function run() {
     } catch (err) {
 	core.error(`error downloading bootstraping script from ${url}: ${err}`);
     }
-    core.EndGroup();		// bootstrap script executed
+    core.endGroup();		// bootstrap script executed
     const eldevBin = join(isWindows? process.env.USERPROFILE : process.env.HOME,  ".eldev", "bin");
     core.startGroup(`Adding ${eldevBin} to PATH`);
     core.addPath(eldevBin);
     core.startGroup('Bootstraping Eldev');
     await exec.exec(localScript, "version");
-    core.Endgroup();
+    core.endGroup();
 }
 
 run();
