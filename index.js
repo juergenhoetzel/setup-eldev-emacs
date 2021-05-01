@@ -16,13 +16,16 @@ async function run() {
 	    await fs.promises.chmod(localScript, fs.constants.S_IXUSR | fs.constants.S_IWUSR | fs.constants.S_IRUSR);
 	}
 	core.endGroup();
-	await exec.exec(localScript, ['https://raw.githubusercontent.com/doublep/eldev/master/bin/eldev.bat']);
+	await exec.exec(localScript);
     } catch (err) {
-	core.error(`error occured bootstraping from ${url}: ${err}`);
+	core.error(`error downloading bootstraping script from ${url}: ${err}`);
     }
+    core.EndGroup();		// bootstrap script executed
     const eldevBin = join(isWindows? process.env.USERPROFILE : process.env.HOME,  ".eldev", "bin");
     core.startGroup(`Adding ${eldevBin} to PATH`);
     core.addPath(eldevBin);
+    core.startGroup('Bootstraping Eldev');
+    await exec.exec(localScript, "version");
     core.Endgroup();
 }
 
