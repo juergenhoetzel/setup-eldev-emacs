@@ -25,7 +25,7 @@ async function run() {
     core.startGroup(`Adding ${eldevBin} to PATH`);
     core.addPath(eldevBin);
     core.startGroup('Bootstraping Eldev');
-    await exec.exec(localScript, "version");
+    await exec.exec(join(eldevBin, "eldev"), "version");
     core.endGroup();
 }
 
